@@ -19,6 +19,22 @@ export interface Track {
 
 export const tracks: Track[] = [
   {
+    slug: "am-pentatonic-jam",
+    title: "Am ペンタトニック・ジャム",
+    key: "Am",
+    bpm: 100,
+    genre: "Rock",
+    audioUrl: "/audio/am-pentatonic-jam.mp3",
+    description:
+      "Aマイナーペンタトニックでソロ練習するためのバッキングトラック。ロック／ブルースの最も基本的なキーで、まず最初に挑戦したいペンタ練習用。",
+    suggestedScales: [
+      { root: "A", scale: "minor_pentatonic", label: "A マイナーペンタ" },
+      { root: "A", scale: "blues", label: "A ブルース" },
+      { root: "A", scale: "minor", label: "A ナチュラルマイナー" },
+      { root: "A", scale: "dorian", label: "A ドリアン" },
+    ],
+  },
+  {
     slug: "em-pentatonic-jam",
     title: "Em ペンタトニック・ジャム",
     key: "Em",
