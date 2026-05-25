@@ -18,20 +18,22 @@ export interface Track {
 }
 
 export const tracks: Track[] = [
-  // 例:
-  // {
-  //   slug: "blues-in-a",
-  //   title: "Slow Blues in A",
-  //   key: "A",
-  //   bpm: 75,
-  //   genre: "Blues",
-  //   audioUrl: "/audio/blues-in-a.mp3",
-  //   description: "Aメジャー／マイナーペンタとブルースで自由にソロを取れるシンプルなブルース進行。",
-  //   suggestedScales: [
-  //     { root: "A", scale: "minor_pentatonic", label: "Aマイナーペンタ" },
-  //     { root: "A", scale: "blues", label: "Aブルース" },
-  //   ],
-  // },
+  {
+    slug: "em-pentatonic-jam",
+    title: "Em ペンタトニック・ジャム",
+    key: "Em",
+    bpm: 100,
+    genre: "Rock",
+    audioUrl: "/audio/em-pentatonic-jam.mp3",
+    description:
+      "Eマイナーペンタトニックでソロ練習するためのバッキングトラック。基本のペンタからブルース、ナチュラルマイナー、ドリアンへと段階的に語彙を増やしていくのに最適。",
+    suggestedScales: [
+      { root: "E", scale: "minor_pentatonic", label: "E マイナーペンタ" },
+      { root: "E", scale: "blues", label: "E ブルース" },
+      { root: "E", scale: "minor", label: "E ナチュラルマイナー" },
+      { root: "E", scale: "dorian", label: "E ドリアン" },
+    ],
+  },
 ];
 
 export const GENRES = ["All", "Blues", "Funk", "Rock", "Jazz", "Pop", "Latin"] as const;
