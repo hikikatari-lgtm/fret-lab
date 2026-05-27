@@ -19,6 +19,22 @@ export interface Track {
 
 export const tracks: Track[] = [
   {
+    slug: "just-the-two-of-us-fm",
+    title: "Just the Two of Us（Fm）",
+    key: "Fm",
+    bpm: 95,
+    genre: "Jazz",
+    audioUrl: "/audio/just-the-two-of-us-fm.mp3",
+    description:
+      "Grover Washington Jr. の名曲「Just the Two of Us」のバッキングトラック（Fmバージョン）。II-V-I が連続するスムースジャズの定番進行で、Fmペンタトニックを中心にメロディックなソロ練習ができます。",
+    suggestedScales: [
+      { root: "F", scale: "minor_pentatonic", label: "F マイナーペンタ" },
+      { root: "F", scale: "blues", label: "F ブルース" },
+      { root: "F", scale: "dorian", label: "F ドリアン" },
+      { root: "F", scale: "minor", label: "F ナチュラルマイナー" },
+    ],
+  },
+  {
     slug: "am-pentatonic-jam",
     title: "Am ペンタトニック・ジャム",
     key: "Am",
