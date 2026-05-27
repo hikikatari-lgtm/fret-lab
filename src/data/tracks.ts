@@ -19,6 +19,22 @@ export interface Track {
 
 export const tracks: Track[] = [
   {
+    slug: "bb-blues",
+    title: "Bb Blues",
+    key: "Bb",
+    bpm: 100,
+    genre: "Blues",
+    audioUrl: "/audio/bb-blues.mp3",
+    description:
+      "Bbブルース進行のバッキングトラック。管楽器の世界では定番キーで、ホーンとの共演を意識した練習にも最適。Bbブルーススケールでブルージーなフレーズを徹底的に磨きましょう。",
+    suggestedScales: [
+      { root: "Bb", scale: "blues", label: "Bb ブルース" },
+      { root: "Bb", scale: "minor_pentatonic", label: "Bb マイナーペンタ" },
+      { root: "Bb", scale: "major_pentatonic", label: "Bb メジャーペンタ" },
+      { root: "Bb", scale: "mixolydian", label: "Bb ミクソリディアン" },
+    ],
+  },
+  {
     slug: "just-the-two-of-us-fm",
     title: "Just the Two of Us（Fm）",
     key: "Fm",
