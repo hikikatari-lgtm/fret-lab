@@ -30,7 +30,12 @@ export interface ChordSection {
 export interface ChordRow {
   open?: string; // 行頭の記号（例 "‖:"）
   close?: string; // 行末の記号（例 ":‖"）
-  measures: { degree?: string; chord: string }[]; // chord "%" は前小節リピート
+  measures: ChordBeat[][]; // 各小節 = ビート（コード）の配列。1小節に複数コード可
+}
+
+export interface ChordBeat {
+  degree?: string; // ローマ数字ディグリー
+  chord: string; // "%" は前小節リピート
 }
 
 export const tracks: Track[] = [
@@ -58,10 +63,10 @@ export const tracks: Track[] = [
               open: "‖:",
               close: ":‖",
               measures: [
-                { degree: "VIm7", chord: "C#m7" },
-                { degree: "II7", chord: "F#7" },
-                { degree: "IV/V", chord: "A/B" },
-                { degree: "I", chord: "E" },
+                [{ degree: "VIm7", chord: "C#m7" }],
+                [{ degree: "II7", chord: "F#7" }],
+                [{ degree: "IV/V", chord: "A/B" }],
+                [{ degree: "I", chord: "E" }],
               ],
             },
           ],
@@ -71,18 +76,18 @@ export const tracks: Track[] = [
           rows: [
             {
               measures: [
-                { degree: "IVmaj7", chord: "Amaj7" },
-                { degree: "III7", chord: "G#7" },
-                { degree: "VIm7", chord: "C#m7" },
-                { degree: "II7", chord: "F#7" },
+                [{ degree: "IVmaj7", chord: "Amaj7" }],
+                [{ degree: "III7", chord: "G#7" }],
+                [{ degree: "VIm7", chord: "C#m7" }],
+                [{ degree: "II7", chord: "F#7" }],
               ],
             },
             {
               measures: [
-                { degree: "IV/V", chord: "A/B" },
-                { chord: "%" },
-                { degree: "I", chord: "E" },
-                { chord: "%" },
+                [{ degree: "IV/V", chord: "A/B" }],
+                [{ chord: "%" }],
+                [{ degree: "I", chord: "E" }],
+                [{ chord: "%" }],
               ],
             },
           ],
@@ -114,13 +119,46 @@ export const tracks: Track[] = [
     genre: "Jazz",
     audioUrl: "/audio/just-the-two-of-us-fm.mp3",
     description:
-      "Grover Washington Jr. の名曲「Just the Two of Us」のバッキングトラック（Fmバージョン）。II-V-I が連続するスムースジャズの定番進行で、Fmペンタトニックを中心にメロディックなソロ練習ができます。",
+      "Grover Washington Jr. の名曲「Just the Two of Us」のバッキングトラック。Dbmaj7→C7→Fm7 の循環に、Ebm7→Ab7（Dbへの II-V）を挟むスムースジャズの定番進行。Fmペンタトニックを中心にメロディックなソロ練習ができます。",
     suggestedScales: [
       { root: "F", scale: "minor_pentatonic", label: "F マイナーペンタ" },
       { root: "F", scale: "blues", label: "F ブルース" },
       { root: "F", scale: "dorian", label: "F ドリアン" },
       { root: "F", scale: "minor", label: "F ナチュラルマイナー" },
     ],
+    chordChart: {
+      sections: [
+        {
+          name: "A",
+          rows: [
+            {
+              open: "‖:",
+              measures: [
+                [
+                  { degree: "IVmaj7", chord: "Dbmaj7" },
+                  { degree: "III7", chord: "C7" },
+                ],
+                [
+                  { degree: "VIm7", chord: "Fm7" },
+                  { degree: "IIm7", chord: "Ebm7" },
+                  { degree: "V7", chord: "Ab7" },
+                ],
+              ],
+            },
+            {
+              close: ":‖",
+              measures: [
+                [
+                  { degree: "IVmaj7", chord: "Dbmaj7" },
+                  { degree: "III7", chord: "C7" },
+                ],
+                [{ degree: "VIm7", chord: "Fm7" }],
+              ],
+            },
+          ],
+        },
+      ],
+    },
   },
   {
     slug: "am-pentatonic-jam",

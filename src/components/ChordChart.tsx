@@ -35,23 +35,31 @@ export default function ChordChart({
                     |
                   </div>
                 )}
-                {row.measures.map((m, mi) => {
+                {row.measures.map((measure, mi) => {
                   const isLast = mi === row.measures.length - 1;
                   return (
                     <div key={mi} className="flex items-stretch">
-                      <div className="flex min-w-[72px] flex-col items-center justify-end px-2">
-                        <span className="h-4 text-[11px] leading-none text-rose-300/80">
-                          {m.degree ?? ""}
-                        </span>
-                        <span
-                          className={`mt-1 text-base ${
-                            m.chord === "%"
-                              ? "text-muted"
-                              : "font-semibold text-foreground"
-                          }`}
-                        >
-                          {m.chord === "%" ? "／" : m.chord}
-                        </span>
+                      {/* 1小節内のコード（ビート）を横並びに。小節内にはバー線を入れない */}
+                      <div className="flex items-end justify-center gap-3 px-3">
+                        {measure.map((beat, bi) => (
+                          <div
+                            key={bi}
+                            className="flex min-w-[52px] flex-col items-center justify-end"
+                          >
+                            <span className="h-4 text-[11px] leading-none text-rose-300/80">
+                              {beat.degree ?? ""}
+                            </span>
+                            <span
+                              className={`mt-1 text-base ${
+                                beat.chord === "%"
+                                  ? "text-muted"
+                                  : "font-semibold text-foreground"
+                              }`}
+                            >
+                              {beat.chord === "%" ? "／" : beat.chord}
+                            </span>
+                          </div>
+                        ))}
                       </div>
                       {/* 最終小節で close 記号があるときは、close が締めバーになるので通常バー線は出さない */}
                       {isLast && row.close ? null : (
