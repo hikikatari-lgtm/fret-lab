@@ -71,7 +71,7 @@ export const tracks: Track[] = [
           rows: [
             {
               measures: [
-                { degree: "IVm7", chord: "Am7" },
+                { degree: "IVmaj7", chord: "Amaj7" },
                 { degree: "III7", chord: "G#7" },
                 { degree: "VIm7", chord: "C#m7" },
                 { degree: "II7", chord: "F#7" },
