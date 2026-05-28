@@ -35,29 +35,35 @@ export default function ChordChart({
                     |
                   </div>
                 )}
-                {row.measures.map((m, mi) => (
-                  <div key={mi} className="flex items-stretch">
-                    <div className="flex min-w-[72px] flex-col items-center justify-end px-2">
-                      <span className="h-4 text-[11px] leading-none text-rose-300/80">
-                        {m.degree ?? ""}
-                      </span>
-                      <span
-                        className={`mt-1 text-base ${
-                          m.chord === "%"
-                            ? "text-muted"
-                            : "font-semibold text-foreground"
-                        }`}
-                      >
-                        {m.chord === "%" ? "／" : m.chord}
-                      </span>
+                {row.measures.map((m, mi) => {
+                  const isLast = mi === row.measures.length - 1;
+                  return (
+                    <div key={mi} className="flex items-stretch">
+                      <div className="flex min-w-[72px] flex-col items-center justify-end px-2">
+                        <span className="h-4 text-[11px] leading-none text-rose-300/80">
+                          {m.degree ?? ""}
+                        </span>
+                        <span
+                          className={`mt-1 text-base ${
+                            m.chord === "%"
+                              ? "text-muted"
+                              : "font-semibold text-foreground"
+                          }`}
+                        >
+                          {m.chord === "%" ? "／" : m.chord}
+                        </span>
+                      </div>
+                      {/* 最終小節で close 記号があるときは、close が締めバーになるので通常バー線は出さない */}
+                      {isLast && row.close ? null : (
+                        <div className="flex items-end pb-1 text-lg text-muted">
+                          |
+                        </div>
+                      )}
                     </div>
-                    <div className="flex items-end pb-1 text-lg text-muted">
-                      |
-                    </div>
-                  </div>
-                ))}
+                  );
+                })}
                 {row.close ? (
-                  <div className="flex items-end pb-1 pl-0 text-lg text-muted">
+                  <div className="flex items-end pb-1 pl-2 text-lg text-muted">
                     {row.close}
                   </div>
                 ) : null}
