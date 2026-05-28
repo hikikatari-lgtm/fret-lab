@@ -4,6 +4,7 @@ import { useState } from "react";
 import Player from "@/components/Player";
 import Fretboard from "@/components/Fretboard";
 import ScaleSelector from "@/components/ScaleSelector";
+import ChordChart from "@/components/ChordChart";
 import type { Track } from "@/data/tracks";
 import type { ScaleId } from "@/lib/music";
 
@@ -56,6 +57,16 @@ export default function TrackView({ track }: { track: Track }) {
               );
             })}
           </div>
+        </section>
+      ) : null}
+
+      {track.chordChart ? (
+        <section>
+          <h2 className="mb-3 text-lg font-semibold text-gold">🎼 コード譜</h2>
+          <ChordChart
+            imageUrl={track.chordChart.imageUrl}
+            sections={track.chordChart.sections}
+          />
         </section>
       ) : null}
 

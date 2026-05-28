@@ -15,9 +15,81 @@ export interface Track {
   suggestedScales?: { root: string; scale: ScaleId; label?: string }[];
   // ループ初期値（秒）
   defaultLoop?: { start: number; end: number };
+  // コード譜（手書き譜の書き起こし）
+  chordChart?: {
+    imageUrl?: string; // 手書き譜の画像URL（任意）
+    sections?: ChordSection[];
+  };
+}
+
+export interface ChordSection {
+  name: string; // "A", "C" etc
+  rows: ChordRow[];
+}
+
+export interface ChordRow {
+  open?: string; // 行頭の記号（例 "‖:"）
+  close?: string; // 行末の記号（例 ":‖"）
+  measures: { degree?: string; chord: string }[]; // chord "%" は前小節リピート
 }
 
 export const tracks: Track[] = [
+  {
+    slug: "isnt-she-lovely",
+    title: "Isn't She Lovely",
+    key: "E",
+    bpm: 118,
+    genre: "R&B",
+    audioUrl: "/audio/isnt-she-lovely.mp3",
+    description:
+      "Stevie Wonderの名曲「Isn't She Lovely」のバッキングトラック。Key=E。循環するII-Vの動きが心地よいR&B／ソウルの定番進行で、C#マイナーペンタトニックを軸にメロディアスなソロを練習できます。",
+    suggestedScales: [
+      { root: "C#", scale: "minor_pentatonic", label: "C# マイナーペンタ" },
+      { root: "C#", scale: "blues", label: "C# ブルース" },
+      { root: "E", scale: "major_pentatonic", label: "E メジャーペンタ" },
+      { root: "E", scale: "major", label: "E メジャー" },
+    ],
+    chordChart: {
+      sections: [
+        {
+          name: "A",
+          rows: [
+            {
+              open: "‖:",
+              close: ":‖",
+              measures: [
+                { degree: "VIm7", chord: "C#m7" },
+                { degree: "II7", chord: "F#7" },
+                { degree: "IV/V", chord: "A/B" },
+                { degree: "I", chord: "E" },
+              ],
+            },
+          ],
+        },
+        {
+          name: "C",
+          rows: [
+            {
+              measures: [
+                { degree: "IVm7", chord: "Am7" },
+                { degree: "III7", chord: "G#7" },
+                { degree: "VIm7", chord: "C#m7" },
+                { degree: "II7", chord: "F#7" },
+              ],
+            },
+            {
+              measures: [
+                { degree: "IV/V", chord: "A/B" },
+                { chord: "%" },
+                { degree: "I", chord: "E" },
+                { chord: "%" },
+              ],
+            },
+          ],
+        },
+      ],
+    },
+  },
   {
     slug: "bb-blues",
     title: "Bb Blues",
